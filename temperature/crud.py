@@ -18,7 +18,7 @@ async def get_temperature(db: AsyncSession, city_id: int):
 
 
 async def create_temperatures(db: AsyncSession, temperatures: list[schemas.TemperatureCreate]):
-    for temperature in temperatures:
+    async for temperature in temperatures:
         db_temperature = models.DBTemperature(
             city_id=temperature.city_id,
             date_time=temperature.date_time,

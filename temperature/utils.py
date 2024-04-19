@@ -10,7 +10,7 @@ URL = "https://api.weatherapi.com/v1/current.json"
 async def fetch_temperature_data(cities: list[City]) -> dict[int, int]:
     city_temperatures = {}
     async with httpx.AsyncClient() as client:
-        for city in cities:
+        async for city in cities:
             try:
                 response = await client.get(URL, params={"key": WEATHER_API_KEY, "q": city.name})
                 response.raise_for_status()
